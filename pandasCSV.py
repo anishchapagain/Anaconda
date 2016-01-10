@@ -29,9 +29,11 @@ if command[0]=='mag':
 
 print("Total Rows : %s , Matched : %s\n" % (len(data),len(reader)))
 
-for index,row in reader.iterrows():
-    lats.append(float(row['elatitude']))
-    lons.append(float(row['elongitude']))
-    epicentre.append(row['epicentre'])
-    magnitudes.append(float(row['emagnitude']))
-    timestrings.append(row['edate']+" "+row['etime'])
+for index,row in reader.head().iterrows():
+    print row[0]
+    
+#    lats.append(float(row['elatitude']))
+#    lons.append(float(row['elongitude']))
+#    epicentre.append(row['epicentre'])
+#    magnitudes.append(float(row['emagnitude']))
+#    timestrings.append(row['edate']+" "+row['etime'])

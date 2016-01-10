@@ -8,11 +8,6 @@ import pandas as pd
 import sys
 
 data = pd.read_csv('sample/earthquakeGorkha_aftershocks_test1.csv')
-#data = pd.read_csv('sample/earthquakePast.csv')
-
-lats,lons = [], []
-epicentre,magnitudes = [],[]
-timestrings = []
 
 val = sys.argv[1]
 print("Command %s \n" % val)
@@ -32,17 +27,11 @@ def get_command(command):
   
 reader = get_command(command)
 print("Total Rows : %s , Matched : %s\n" % (len(data),len(reader)))
-for index,row in reader.iterrows():
-    lats.append(float(row['elatitude']))
-    lons.append(float(row['elongitude']))
-    epicentre.append(row['epicentre'])
-    magnitudes.append(float(row['emagnitude']))
-    timestrings.append(row['edate']+" "+row['etime'])    
+ 
 
 # --- Nepal EarthQuake Build Map ---
 from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Make this plot larger.
 plt.figure(figsize=(20,16))
@@ -54,7 +43,7 @@ eq_map = Basemap(projection='merc',area_thresh = 100,
                  resolution = 'h')
                  
                  
-#eq_map.drawcoastlines()
+eq_map.drawcoastlines()
 #eq_map.drawcountries(color='r',linewidth=1.0,linestyle='solid')
 #eq_map.fillcontinents(color = 'gray',)
 eq_map.readshapefile('NPL_adm_shp/NPL_adm2', 'Nepal')
@@ -64,8 +53,9 @@ eq_map.drawmapboundary()
 #eq_map.drawparallels(np.arange(-90, 90, 30))
  
 min_marker_size = 2.50
-for lon, lat, mag in zip(lons, lats, magnitudes):
-    x,y = eq_map(lon, lat)
+for index,row in reader.iterrows():    #for lon, lat, mag in zip(lons, lats, magnitudes):
+    x,y = eq_map(float(row['elongitude']),float(row['elatitude']))
+    mag= float(row['emagnitude'])
     if mag >= 5.0 and mag < 6.0:
         marker_string = 'g^'
         msize = mag * 1.20
