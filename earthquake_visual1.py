@@ -49,17 +49,13 @@ def get_marker_color(magnitude):
     else:
         return ('')
 
-
 # Make this plot larger.
 plt.figure(figsize=(16,12))
 
 # lat_0=26.32, lon_0=86.21,llcrnrlon=82.52, llcrnrlat=26.88,urcrnrlon=81.5, urcrnrlat=30.79
 #eq_map = Basemap(projection='merc', resolution = 'h', area_thresh = 10,lat_0=26, lon_0=86,llcrnrlat=26.0,llcrnrlon=86.0,urcrnrlat=26.5,urcrnrlon=86.63)
 #eq_map = Basemap(projection='merc', resolution = 'h', area_thresh = 1000,lat_0=26, lon_0=86)
-eq_map = Basemap(projection='merc',
-                 llcrnrlon=79.26, llcrnrlat=26.18,
-                 urcrnrlon=88.70, urcrnrlat=30.82,
-                 resolution = 'h')
+eq_map = Basemap(projection='merc',llcrnrlon=79.26, llcrnrlat=26.18,urcrnrlon=88.70, urcrnrlat=30.82,resolution = 'h')
 eq_map.drawcoastlines()
 eq_map.drawcountries(color='r',linewidth=2.0,linestyle='solid')
 #eq_map.fillcontinents(color = 'gray',)
