@@ -5,7 +5,6 @@ Created on Fri Jan 08 19:24:08 2016
 """
 
 import csv
-import sys
 
 ## Open the earthquake data file.
 filename = 'sample/earthquakeGorkha_aftershocks_test1.csv'
